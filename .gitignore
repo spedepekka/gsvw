@@ -1,0 +1,11 @@
+.project
+.cproject
+.settings
+.metadata
+*.[ao]
+*~
+.texlipse
+executable
+doxygen
+Makefile*
+tmp
