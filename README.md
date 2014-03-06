@@ -1,7 +1,7 @@
 gsvw
 ====
 
-A wrapper library and a test application which access a Google Street View API. Doesn't probably work out of the box and has many rough edges.
+A wrapper library and a test application for accessing the static Google Street View API. Doesn't probably work out of the box and has many rough edges.
 
 The original idea
 =================
