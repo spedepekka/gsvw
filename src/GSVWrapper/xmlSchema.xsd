@@ -1,0 +1,92 @@
+<!--Author Mikko Saavinen -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+elementFormDefault="qualified">
+
+<!--Validating "panorama" -element-->
+<!-- Added: all, any -->
+<!-- HUOM! ei hyvaksy muuta kuin nuo kolme-->
+
+
+  <xs:element name="panorama">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="data_properties" minOccurs="1"/>
+        <xs:element ref="projection_properties" minOccurs="1"/>
+        <xs:element ref="annotation_properties" minOccurs="1"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+<!--Validating "data_properties" -element-->
+<!-- Added: all, any -->
+<!-- HUOM! "ANY" CAN APPEAR ONLY ONCE TODO: CHECK IT (should "any" term be outside all tags??) -->
+
+  <xs:element name="data_properties">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="copyright" minOccurs="0"/>
+        <xs:element ref="text" minOccurs="0"/>
+        <xs:element ref="region" minOccurs="0"/>
+        <xs:element ref="country" minOccurs="0"/>
+        <xs:element ref="data_flag" minOccurs="0"/>
+      </xs:all>
+      <xs:attribute name="image_height" use="required" type="xs:integer"/>
+      <xs:attribute name="image_width" use="required" type="xs:integer"/>
+      <xs:attribute name="lat" use="required" type="xs:decimal"/>
+      <xs:attribute name="lng" use="required" type="xs:decimal"/>
+      <xs:attribute name="num_zoom_levels" use="required" type="xs:integer"/>
+      <xs:attribute name="original_lat" use="required" type="xs:decimal"/>
+      <xs:attribute name="original_lng" use="required" type="xs:decimal"/>
+      <xs:attribute name="pano_id" use="required" type="xs:NCName"/>
+      <xs:attribute name="tile_height" use="required" type="xs:integer"/>
+      <xs:attribute name="tile_width" use="required" type="xs:integer"/>
+      <xs:anyAttribute/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="copyright" type="xs:string"/>
+  <xs:element name="text" type="xs:string"/>
+  <xs:element name="region" type="xs:string"/>
+  <xs:element name="country" type="xs:string"/>
+  <xs:element name="data_flag" type="xs:integer"/>
+
+<!--Validating "projection_properties" -element-->
+<!--TODO: NCName in projection type?-->
+  <xs:element name="projection_properties">
+    <xs:complexType>
+      <xs:attribute name="pano_yaw_deg" use="required" type="xs:decimal"/>
+      <xs:attribute name="projection_type" use="required" type="xs:NCName"/>
+      <xs:attribute name="tilt_pitch_deg" use="required" type="xs:decimal"/>
+      <xs:attribute name="tilt_yaw_deg" use="required" type="xs:decimal"/>
+      <xs:anyAttribute/>
+    </xs:complexType>
+  </xs:element>
+
+<!--Validating "annotation_properties" -element-->
+<!--Added: all, minOccurs-->
+
+  <xs:element name="annotation_properties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="link_text"/>
+      </xs:sequence>
+      <xs:attribute name="pano_id" use="required" type="xs:NCName"/>
+      <xs:attribute name="road_argb" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="scene" use="required" type="xs:integer"/>
+      <xs:attribute name="yaw_deg" use="required" type="xs:decimal"/>
+      <xs:anyAttribute/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="link_text" type="xs:string"/>
+</xs:schema>
