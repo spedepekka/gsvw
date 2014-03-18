@@ -11,6 +11,6 @@ Please see also
 ===============
     http://googlemapsmania.blogspot.fi/2010/06/static-street-view-api.html
 
-Official page
-=============
+Google's official page
+======================
 https://developers.google.com/maps/documentation/streetview/
